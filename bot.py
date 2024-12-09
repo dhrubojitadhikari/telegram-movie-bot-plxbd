@@ -1,6 +1,6 @@
 import os
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Token এবং Channel ID .env থেকে পড়া
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -34,7 +34,7 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, search_movie))
+    dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, search_movie))
 
     updater.start_polling()
     updater.idle()
